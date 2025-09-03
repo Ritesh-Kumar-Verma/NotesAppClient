@@ -4,7 +4,8 @@ import axios from "axios";
 
 const SharedNotes = () => {
   const { shareId } = useParams(); 
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const frontend_url = import.meta.env.VITE_FRONTEND_URL;
+  
 
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,7 +16,7 @@ const SharedNotes = () => {
 
   
     axios
-      .get(`${apiUrl}/getsharednote/${shareId}`)
+      .get(`${frontend_url}/getsharednote/${shareId}`)
       .then((res) => {
         setNote(res.data);
         setLoading(false);
