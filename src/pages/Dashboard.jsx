@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 
 const Dashboard = ({ userDetails }) => {
   const apiUrl = import.meta.env.VITE_API_URL
-  const frontend_url ='https://notes-app-woad-psi.vercel.app'
-
+  const frontend_url = import.meta.env.VITE_FRONTEND_URL
 
   const [shareLink , setShareLink] = useState({
     id:""
