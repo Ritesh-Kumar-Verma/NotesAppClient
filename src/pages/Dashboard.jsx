@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 const Dashboard = ({ userDetails }) => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
+  const [shareLink , setShareLink] = useState({
+    id:""
+  })
+
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -32,6 +36,26 @@ const Dashboard = ({ userDetails }) => {
       [name]: value,
     }));
   };
+
+  const handleShare = (note)=>{
+    // console.log(note)
+
+    axios.post(`${apiUrl}/makenoteshareable/${note.id}`,userDetails)
+    .then(res=>{
+
+      console.log(res.data)
+      setShareLink(prev=>{
+        return {...prev, [res.data.title] : `https://ritesh-kumar-verma.github.io/NotesAppClient/#/shared/${res.data.id}`}
+      })
+    })
+    .catch(error=>{
+      console.log(error)
+    })
+
+
+  }
+
+
   const handleDelete = (id)=>{
 
     for(const note of notes){
@@ -115,8 +139,25 @@ const Dashboard = ({ userDetails }) => {
               key={note.id}
               className="bg-neutral-900 rounded-xl p-4 shadow-md hover:shadow-lg transition relative"
             >
+
+              <h1 className="pb-3 text-blue-600">
+                {shareLink[note.title]}
+              </h1>
+
+
               <button
-                className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-500 text-white rounded-full text-sm font-bold"
+                className="absolute top-2 right-10 w-6 h-6 flex items-center justify-center cursor-pointer  text-blue-400 rounded-full text-sm font-bold "
+                onClick={() => {
+                    
+                  handleShare(note)
+                   
+                }}
+              >
+               🔗
+              </button>
+              
+              <button
+                className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-red-600 hover:bg-red-500 text-white cursor-pointer rounded-full text-sm font-bold"
                 onClick={() => {
                     
                     handleDelete(note.id)

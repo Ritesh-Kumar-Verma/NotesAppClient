@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = ({ setUserDetails, setLoginStatus }) => {
+  const [warning , setWarning] = useState("")
   const apiUrl = import.meta.env.VITE_API_URL;
   const [tab, setTab] = useState("login");
   const navigate = useNavigate();
@@ -40,6 +41,8 @@ const Login = ({ setUserDetails, setLoginStatus }) => {
         navigate("/dashboard");
       })
       .catch((error) => {
+        setWarning("Wrong username or password!!!")
+        setTimeout(()=>setWarning(""),3000)
         console.log(error);
       });
   };
@@ -57,13 +60,20 @@ const Login = ({ setUserDetails, setLoginStatus }) => {
         navigate("/dashboard");
       })
       .catch((error) => {
+        if(error.response.status){
+          setWarning("Username Already Exists!!")
+          setTimeout(()=>setWarning(""),3000)
+        }
         console.log(error);
       });
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-neutral-900 text-white rounded-xl shadow-lg p-6 flex flex-col gap-6">
+      <div className="w-full max-w-md bg-neutral-900 text-white rounded-xl shadow-lg p-6 flex flex-col gap-6 ">
+      <div className="text-center text-red-600 h-1">
+      {warning}
+      </div>
         <div className="flex justify-around">
           <button
             onClick={() => setTab("login")}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { HashRouter  as Router, Routes, Route, Navigate } from "react-router-dom"; 
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard';
+import SharedNotes from './pages/SharedNotes';
 
 const App = () => {
   const [userDetails, setUserDetails] = useState({
@@ -36,6 +37,7 @@ const App = () => {
             )
           } 
         />
+        <Route path="/shared/:shareId" element={<SharedNotes />} />
       </Routes>
     </Router>
   )
