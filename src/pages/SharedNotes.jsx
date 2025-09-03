@@ -4,7 +4,7 @@ import axios from "axios";
 
 const SharedNotes = () => {
   const { shareId } = useParams(); 
-  const frontend_url = import.meta.env.VITE_FRONTEND_URL;
+  const frontend_url = 'https://notes-app-woad-psi.vercel.app'
   
 
   const [note, setNote] = useState(null);
