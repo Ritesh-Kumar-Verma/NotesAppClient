@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Dashboard = ({ userDetails }) => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL
+  const frontend_url = import.meta.env.VITE_FRONTEND_URL
 
   const [shareLink , setShareLink] = useState({
     id:""
@@ -45,7 +46,7 @@ const Dashboard = ({ userDetails }) => {
 
       console.log(res.data)
       setShareLink(prev=>{
-        return {...prev, [res.data.title] : `https://ritesh-kumar-verma.github.io/NotesAppClient/#/shared/${res.data.id}`}
+        return {...prev, [res.data.title] : `${frontend_url}/#/shared/${res.data.id}`}
       })
     })
     .catch(error=>{

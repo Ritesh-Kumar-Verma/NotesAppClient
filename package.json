@@ -1,8 +1,6 @@
 {
   "name": "notesappclient",
   "private": true,
-    "homepage": "https://ritesh-kumar-verma.github.io/NotesAppClient",
-
   "version": "0.0.0",
   "type": "module",
   "scripts": {
