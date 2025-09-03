@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-    base: '/NotesAppClient/',
-  plugins: [react(),tailwindcss()],
+  base: './',
+  plugins: [react(), tailwindcss()]
 })
