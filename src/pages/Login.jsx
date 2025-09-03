@@ -60,7 +60,7 @@ const Login = ({ setUserDetails, setLoginStatus }) => {
         navigate("/dashboard");
       })
       .catch((error) => {
-        if(error.response.status){
+        if(error.response.status==406){
           setWarning("Username Already Exists!!")
           setTimeout(()=>setWarning(""),3000)
         }
